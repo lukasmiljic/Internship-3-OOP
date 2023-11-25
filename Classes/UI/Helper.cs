@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace zad3.Classes.UI
 {
@@ -31,6 +32,44 @@ namespace zad3.Classes.UI
         {
             Console.WriteLine("Unesite bilo sto za nastavak...");
             Console.ReadLine();
+        }
+        public static int ExitApplication()
+        {
+            Console.Clear();
+            if (AreYouSure() == 1)
+            {
+                Console.WriteLine("Zbogom...");
+                Thread.Sleep(1000);
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public static int AreYouSure()
+        {
+            do
+            {
+                char userChoice;
+                Console.Write("Jeste li sigurni [y/n]: ");
+                userChoice = char.Parse(Console.ReadLine());
+                if (userChoice == 'y')
+                {
+                    Console.Clear();
+                    return 1;
+                }
+                else if (userChoice == 'n')
+                {
+                    Console.Clear();
+                    return 0;
+                }
+                else
+                {
+                    Console.WriteLine("Unesite ili y ili n.");
+                    PressAnything();
+                }
+            } while (true);
         }
     }
 }

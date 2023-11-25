@@ -12,6 +12,7 @@ namespace zad3
         static void Main(string[] args)
         {
             var phoneBook = new Dictionary<Contact, List<Call>>();
+            Menu.MainMenu(phoneBook);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace zad3.Classes
 {
     internal class PhoneBook
     {
-        public void PrintContacts(Dictionary<Contact, List<Call>> phoneBook)
+        public static void PrintContacts(Dictionary<Contact, List<Call>> phoneBook)
         {
             foreach (var Contact in phoneBook)
             {
