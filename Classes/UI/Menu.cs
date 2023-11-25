@@ -33,7 +33,7 @@ namespace zad3.Classes
                         break;
 
                     case 2:
-                        AddContact();
+                        AddContact(phoneBook);
                         break;
 
                     case 3:
@@ -69,9 +69,22 @@ namespace zad3.Classes
             PhoneBook.PrintContacts(phonebook);
             Helper.PressAnything();
         }
-        private static void AddContact()
+        private static void AddContact(Dictionary<Contact, List<Call>> phonebook)
         {
-
+            Console.Clear();
+            Console.WriteLine("Dodavanje novog kontakta");
+            var newContact = new Contact();
+            Console.Write("Ime i prezime: ");
+            newContact.fullName = Console.ReadLine();
+            Console.Write("Telefonski broj: ");
+            newContact.phoneNumber = Console.ReadLine();
+            if (Helper.AreYouSure())
+            {
+                PhoneBook.AddNewContact(phonebook, newContact, new List<Call>());
+                Console.WriteLine("Uspjesno dodan novi kontakt");
+            }
+            else Console.WriteLine("Unos novog kontakta otkazan");
+            Helper.PressAnything();
         }
         private static void DeleteContact()
         {

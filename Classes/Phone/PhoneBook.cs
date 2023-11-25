@@ -7,16 +7,16 @@ namespace zad3.Classes
     {
         public static void PrintContacts(Dictionary<Contact, List<Call>> phoneBook)
         {
-            foreach (var Contact in phoneBook)
+            foreach (var contact in phoneBook)
             {
-                Console.WriteLine(Contact.ToString());
+                Console.WriteLine(contact.Key.ToString());
             }
         }
-        public void AddNewContact(Dictionary<Contact, List<Call>> phoneBook, Contact contact, List<Call>calls)
+        public static void AddNewContact(Dictionary<Contact, List<Call>> phoneBook, Contact contact, List<Call>calls)
         {
             phoneBook.Add(contact,calls);
         }
-        public void DeleteContact(Dictionary<Contact, List<Call>> phoneBook, Contact contact) 
+        public static void DeleteContact(Dictionary<Contact, List<Call>> phoneBook, Contact contact) 
         {
             phoneBook.Remove(contact);
         }

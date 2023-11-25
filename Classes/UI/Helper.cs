@@ -36,7 +36,7 @@ namespace zad3.Classes.UI
         public static int ExitApplication()
         {
             Console.Clear();
-            if (AreYouSure() == 1)
+            if (AreYouSure())
             {
                 Console.WriteLine("Zbogom...");
                 Thread.Sleep(1000);
@@ -47,27 +47,24 @@ namespace zad3.Classes.UI
                 return 0;
             }
         }
-        public static int AreYouSure()
+        public static bool AreYouSure()
         {
             do
             {
                 char userChoice;
                 Console.Write("Jeste li sigurni [y/n]: ");
-                userChoice = char.Parse(Console.ReadLine());
+                char.TryParse(Console.ReadLine(), out userChoice);
                 if (userChoice == 'y')
                 {
-                    Console.Clear();
-                    return 1;
+                    return true;
                 }
                 else if (userChoice == 'n')
                 {
-                    Console.Clear();
-                    return 0;
+                    return false;
                 }
                 else
                 {
                     Console.WriteLine("Unesite ili y ili n.");
-                    PressAnything();
                 }
             } while (true);
         }
