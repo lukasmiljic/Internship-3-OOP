@@ -229,16 +229,23 @@ namespace zad3.Classes
         }
         private static void PrintAllCalls(Dictionary<Contact, List<Call>> phonebook)
         {
+            var emptyFlag = true;
+            Console.Clear();
+            Console.WriteLine("Ispis svih poziva");
             if (Helper.IsEmpty(phonebook) == true) return;
 
             foreach (var item in phonebook)
             {
-                Console.WriteLine(item.ToString());
+                if (item.Value.Count == 0) continue;
+                Console.WriteLine(item.Key.fullName);
                 foreach(var call in phonebook.Values)
                 {
                     Console.WriteLine(call.ToString());
+                    emptyFlag = false;
                 }
             }
+            if (emptyFlag == true) Console.WriteLine("Trenutno nema ni jedan poziv");
+            Helper.PressAnything();
         }
 
         private static void PrintAllCalls(List<Call> calls)
