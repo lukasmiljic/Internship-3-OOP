@@ -90,5 +90,24 @@ namespace zad3.Classes.UI
             if (ContactFound(phonebook, phoneNumber) != null) return false;
             return true;
         }
+
+        public static bool IsEmpty(Dictionary<Contact, List<Call>> phonebook)
+        {
+            if (phonebook.Count == 0)
+            {
+                Console.WriteLine("Trenutno nema nijedan kontakt u kontaktima");
+                Helper.PressAnything();
+                return true;
+            }
+            return false;
+        }
+
+        public static void SimplePrint(Dictionary<Contact, List<Call>> phonebook)
+        {
+            foreach (var contact in phonebook)
+            {
+                Console.WriteLine(contact.Key.fullName + " " + contact.Key.phoneNumber);
+            }
+        }
     }
 }

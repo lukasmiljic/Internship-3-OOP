@@ -68,6 +68,9 @@ namespace zad3.Classes
         {
             Console.Clear();
             Console.WriteLine("Ispis svih kontakata");
+
+            if (Helper.IsEmpty(phonebook) == true) return;
+
             PhoneBook.PrintContacts(phonebook);
             Helper.PressAnything();
         }
@@ -107,19 +110,22 @@ namespace zad3.Classes
         {
             Console.Clear();
             Console.WriteLine("Brisanje kontakta - Unesite broj kontakta kojeg zelite obrisati");
+            if (Helper.IsEmpty(phonebook) == true) return;
+            Helper.SimplePrint(phonebook);
+
             var contactToDelete = "";
             Console.Write("Telefonski broj: ");
             contactToDelete = Console.ReadLine();
-            if (!Helper.AreYouSure())
-            {
-                Console.WriteLine("Brisanje otkazano");
-                Helper.PressAnything();
-                return;
-            }
             foreach (var contact in phonebook) 
             {
                 if (contact.Key.phoneNumber == contactToDelete)
                 {
+                    if (!Helper.AreYouSure())
+                    {
+                        Console.WriteLine("Brisanje otkazano");
+                        Helper.PressAnything();
+                        return;
+                    }
                     PhoneBook.DeleteContact(phonebook, contact.Key);
                     Console.WriteLine("Uspjesno izbrisan kontakt");
                     Helper.PressAnything();
@@ -136,6 +142,8 @@ namespace zad3.Classes
             Console.WriteLine("Uredivanje preference kontakta - Unesite broj kontakta kojeg zelite urediti\")");
             Console.WriteLine("[0] - Favorit, [1] - Blokiran, [2] - Normalan kontakt");
             Console.WriteLine("Telefonski broj: ");
+            if (Helper.IsEmpty(phonebook) == true) return;
+            Helper.SimplePrint(phonebook);
             var contactToEdit = "";
             contactToEdit = Console.ReadLine();
             foreach (var contact in phonebook)
@@ -146,7 +154,7 @@ namespace zad3.Classes
                     do
                     {
                         Console.WriteLine($"Trenutna preferenca kontakta je {contact.Key.preference}");
-                        Console.WriteLine("Unesite novu preferencu: ");
+                        Console.Write("Unesite novu preferencu: ");
                         if (!Helper.ValidateInput(ref newPreference, 2))
                         {
                             Helper.ErrorMessage(0);
@@ -168,12 +176,24 @@ namespace zad3.Classes
         {
             var newPhoneNumber = "";
             var selectedContact = new Contact();
+
             do
             {
                 Console.Clear();
-                Console.WriteLine("Upravljanje kontaktom - unesite telefonski broj kontakta s kojim zelite upravljati");
+                Console.WriteLine("Upravljanje kontaktom - unesite telefonski broj kontakta s kojim zelite upravljati [0] za Izlaz");
+                if (Helper.IsEmpty(phonebook) == true) return;
+                Helper.SimplePrint(phonebook);
                 Console.Write("Tel.broj: ");
                 newPhoneNumber = Console.ReadLine();
+                if (newPhoneNumber == "0")
+                {
+                    if (Helper.AreYouSure())
+                    {
+                        Console.WriteLine("Upravljanje otkazano");
+                        Helper.PressAnything();
+                        return;
+                    }
+                }
                 selectedContact = Helper.ContactFound(phonebook, newPhoneNumber);
             } while (selectedContact == null);
 
@@ -209,6 +229,8 @@ namespace zad3.Classes
         }
         private static void PrintAllCalls(Dictionary<Contact, List<Call>> phonebook)
         {
+            if (Helper.IsEmpty(phonebook) == true) return;
+
             foreach (var item in phonebook)
             {
                 Console.WriteLine(item.ToString());
