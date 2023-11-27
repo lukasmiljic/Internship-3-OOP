@@ -38,7 +38,7 @@ namespace zad3.Classes
                         break;
 
                     case 3:
-                        DeleteContact();
+                        DeleteContact(phoneBook);
                         break;
 
                     case 4:
@@ -87,9 +87,28 @@ namespace zad3.Classes
             else Console.WriteLine("Unos novog kontakta otkazan");
             Helper.PressAnything();
         }
-        private static void DeleteContact()
+        private static void DeleteContact(Dictionary<Contact, List<Call>> phonebook)
         {
-
+            Console.Clear();
+            Console.WriteLine("Brisanje kontakta - Unesite broj kontakta kojeg zelite obrisati");
+            var brojKontaktaZaObrisat = "";
+            Console.Write("Telefonski broj: ");
+            brojKontaktaZaObrisat = Console.ReadLine();
+            if (!Helper.AreYouSure())
+            {
+                Console.WriteLine("Brisanje otkazano");
+                return;
+            }
+            foreach (var contact in phonebook) 
+            {
+                if (contact.Key.phoneNumber == brojKontaktaZaObrisat)
+                {
+                    PhoneBook.DeleteContact(phonebook, contact.Key);
+                    break;
+                }
+            }
+            Console.WriteLine("Uspjesno izbrisan kontakt");
+            Helper.PressAnything();
         }
         private static void EditContactPreference()
         {
