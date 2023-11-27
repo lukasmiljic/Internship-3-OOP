@@ -47,11 +47,11 @@ namespace zad3.Classes
                         break;
 
                     case 5:
-                        ManageContact();
+                        ManageContact(phoneBook);
                         break;
 
                     case 6:
-                        PrintAllCalls();
+                        PrintAllCalls(phoneBook);
                         break;
 
                     case 0:
@@ -75,13 +75,28 @@ namespace zad3.Classes
         {
             Console.Clear();
             Console.WriteLine("Dodavanje novog kontakta");
-            var newContact = new Contact();
+            
             Console.Write("Ime i prezime: ");
-            newContact.fullName = Console.ReadLine();
-            Console.Write("Telefonski broj: ");
-            newContact.phoneNumber = Console.ReadLine();
+            var fullName = Console.ReadLine();
+            var phoneNumber = "";
+            do
+            {
+                Console.Write("Telefonski broj: ");
+                phoneNumber = Console.ReadLine();
+                if (Helper.ValidatePhoneNumber(phoneNumber, phonebook))
+                {
+                    Console.WriteLine("Greska pri unosu broja");
+                    Helper.PressAnything();
+                    continue;
+                }
+                break;
+            } while (true);
+            
             if (Helper.AreYouSure())
             {
+                var newContact = new Contact();
+                newContact.fullName = fullName;
+                newContact.phoneNumber = phoneNumber;
                 PhoneBook.AddNewContact(phonebook, newContact, new List<Call>());
                 Console.WriteLine("Uspjesno dodan novi kontakt");
             }
@@ -132,7 +147,7 @@ namespace zad3.Classes
                     {
                         Console.WriteLine($"Trenutna preferenca kontakta je {contact.Key.preference}");
                         Console.WriteLine("Unesite novu preferencu: ");
-                        if (Helper.ValidateInput(ref newPreference, 2))
+                        if (!Helper.ValidateInput(ref newPreference, 2))
                         {
                             Helper.ErrorMessage(0);
                             continue;
@@ -160,7 +175,7 @@ namespace zad3.Classes
                 Console.Write("Tel.broj: ");
                 newPhoneNumber = Console.ReadLine();
                 selectedContact = Helper.ContactFound(phonebook, newPhoneNumber);
-            } while (selectedContact != null);
+            } while (selectedContact == null);
 
             var userChoice = -1;
             do
@@ -192,9 +207,16 @@ namespace zad3.Classes
                 }
             } while (userChoice != 0);
         }
-        private static void PrintAllCalls()
+        private static void PrintAllCalls(Dictionary<Contact, List<Call>> phonebook)
         {
-
+            foreach (var item in phonebook)
+            {
+                Console.WriteLine(item.ToString());
+                foreach(var call in phonebook.Values)
+                {
+                    Console.WriteLine(call.ToString());
+                }
+            }
         }
 
         private static void PrintAllCalls(List<Call> calls)
@@ -208,10 +230,13 @@ namespace zad3.Classes
 
         private static void CreateCall(List<Call> calls)
         {
-            foreach (Call call in calls) 
-            {
-                
-            }
+            calls.Add(new Call() { callDate = DateTime.Now, status = Enums.Status.inProgress});
+            //odgovor na poziv mora biti random generirana vrijednost?
+            Random rand = new Random();
+            Console.WriteLine("Poziv je u tijeku...");
+            Thread.Sleep(rand.Next(1, 20) * 100);
+            calls[calls.Count - 1].status = Enums.Status.ended;
+            Helper.PressAnything();
         }
         private static bool ExitApplication()
         {

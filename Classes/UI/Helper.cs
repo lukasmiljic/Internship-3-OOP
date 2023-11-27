@@ -83,5 +83,12 @@ namespace zad3.Classes.UI
             PressAnything();
             return null;
         }
+
+        public static bool ValidatePhoneNumber (string phoneNumber, Dictionary<Contact, List<Call>> phonebook)
+        {
+            if (phoneNumber.Length < 6 || int.TryParse(phoneNumber, out _)) return false;
+            if (ContactFound(phonebook, phoneNumber) != null) return false;
+            return true;
+        }
     }
 }
