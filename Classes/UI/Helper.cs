@@ -70,16 +70,18 @@ namespace zad3.Classes.UI
             } while (true);
         }
 
-        public static bool ContactFound(Dictionary<Contact, List<Call>> phonebook, string phoneNumber)
+        public static Contact ContactFound(Dictionary<Contact, List<Call>> phonebook, string phoneNumber)
         {
             foreach (var contact in phonebook)
             {
                 if (contact.Key.phoneNumber == phoneNumber)
                 {
-                    return true;
+                    return contact.Key;
                 }
             }
-            return false;
+            Console.WriteLine("Kontakt nije pronaden");
+            PressAnything();
+            return null;
         }
     }
 }
