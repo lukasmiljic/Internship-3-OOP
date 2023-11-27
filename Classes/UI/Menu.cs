@@ -238,11 +238,16 @@ namespace zad3.Classes
             {
                 if (item.Value.Count == 0) continue;
                 Console.WriteLine(item.Key.fullName);
-                foreach(var call in phonebook.Values)
+                for (int i= 0; i<item.Value.Count; i++)
                 {
-                    Console.WriteLine(call.ToString());
+                    Console.WriteLine("\t" + item.Value[i].ToString());
                     emptyFlag = false;
                 }
+                //foreach(var call in phonebook.Values)
+                //{
+                //    Console.WriteLine(call.ToString());
+                //    emptyFlag = false;
+                //}
             }
             if (emptyFlag == true) Console.WriteLine("Trenutno nema ni jedan poziv");
             Helper.PressAnything();
@@ -250,6 +255,7 @@ namespace zad3.Classes
 
         private static void PrintAllCalls(List<Call> calls)
         {
+            Console.Clear();
             foreach (Call call in calls)
             {
                 Console.WriteLine(call.ToString());
@@ -259,6 +265,7 @@ namespace zad3.Classes
 
         private static void CreateCall(List<Call> calls)
         {
+            Console.Clear();
             calls.Add(new Call() { callDate = DateTime.Now, status = Enums.Status.inProgress});
             //odgovor na poziv mora biti random generirana vrijednost?
             Random rand = new Random();
