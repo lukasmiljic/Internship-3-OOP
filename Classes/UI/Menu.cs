@@ -104,15 +104,18 @@ namespace zad3.Classes
                 if (contact.Key.phoneNumber == brojKontaktaZaObrisat)
                 {
                     PhoneBook.DeleteContact(phonebook, contact.Key);
-                    break;
+                    Console.WriteLine("Uspjesno izbrisan kontakt");
+                    Helper.PressAnything();
+                    return;
                 }
             }
-            Console.WriteLine("Uspjesno izbrisan kontakt");
+            Console.Clear();
+            Console.WriteLine("Kontakt nije pronaden");
             Helper.PressAnything();
         }
         private static void EditContactPreference()
         {
-
+            
         }
         private static void ManageContact()
         {
