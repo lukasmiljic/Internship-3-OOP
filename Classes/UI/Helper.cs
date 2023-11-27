@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace zad3.Classes.UI
@@ -67,6 +68,18 @@ namespace zad3.Classes.UI
                     Console.WriteLine("Unesite ili y ili n.");
                 }
             } while (true);
+        }
+
+        public static bool ContactFound(Dictionary<Contact, List<Call>> phonebook, string phoneNumber)
+        {
+            foreach (var contact in phonebook)
+            {
+                if (contact.Key.phoneNumber == phoneNumber)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
