@@ -24,6 +24,7 @@ namespace zad3.Classes
                 if (!Helper.ValidateInput(ref userChoice, 6))
                 {
                     Helper.ErrorMessage(0);
+                    userChoice = -1;
                     continue;
                 }
 
@@ -42,7 +43,7 @@ namespace zad3.Classes
                         break;
 
                     case 4:
-                        EditContactPreference();
+                        EditContactPreference(phoneBook);
                         break;
 
                     case 5:
@@ -113,9 +114,31 @@ namespace zad3.Classes
             Console.WriteLine("Kontakt nije pronaden");
             Helper.PressAnything();
         }
-        private static void EditContactPreference()
+        private static void EditContactPreference(Dictionary<Contact, List<Call>> phonebook)
         {
-            
+            Console.Clear();
+            Console.WriteLine("Uredivanje preference kontakta - Unesite broj kontakta kojeg zelite urediti\")");
+            Console.WriteLine("[F] - Favorit, [B] - Blokiran, [N] - Normalan kontakt");
+            Console.WriteLine("Telefonski broj: ");
+            var brojKontaktaZaObrisat = "";
+            brojKontaktaZaObrisat = Console.ReadLine();
+            if (!Helper.AreYouSure()) 
+            {
+                Console.WriteLine("Uredivanje otkazano");
+            }
+            foreach (var contact in phonebook)
+            {
+                if (contact.Key.phoneNumber == brojKontaktaZaObrisat)
+                {
+                    Console.WriteLine($"Trenutna preferenca kontakta je {contact.Key.preference}");
+                    Console.WriteLine("Unesite novu preferencu: ");
+                    var newPreference = int.Parse(Console.ReadLine());
+                    contact.Key.EditPreference(newPreference);
+                    Console.WriteLine("Uspjesno izbrisan kontakt");
+                    Helper.PressAnything();
+                    return;
+                }
+            }
         }
         private static void ManageContact()
         {
