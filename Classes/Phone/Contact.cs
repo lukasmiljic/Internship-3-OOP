@@ -14,7 +14,7 @@ namespace zad3.Classes
         }
         public override string ToString()
         {
-            return string.Format($"Fullname: {fullName}\tPhone number: {phoneNumber}\t Preference: {preference}");
+            return $"Fullname: {fullName}\tPhone number: {phoneNumber}\t Preference: {preference}";
         }
     }
 }

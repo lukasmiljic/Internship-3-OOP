@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using zad3.Classes.UI;
 
 namespace zad3.Classes
@@ -53,7 +54,7 @@ namespace zad3.Classes
                         break;
 
                     case 0:
-                        ExitApplication();
+                        if (!ExitApplication()) userChoice = -1;
                         break;
 
                     default:
@@ -102,9 +103,19 @@ namespace zad3.Classes
         {
 
         }
-        private static void ExitApplication()
+        private static bool ExitApplication()
         {
-
+            Console.Clear();
+            if (Helper.AreYouSure())
+            {
+                Console.WriteLine("Zbogom...");
+                Thread.Sleep(1000);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
