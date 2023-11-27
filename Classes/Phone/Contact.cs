@@ -8,13 +8,13 @@ namespace zad3.Classes
         public string phoneNumber { get; set; }
         public Preference preference { get; set; } = Preference.Normal;
 
-        public void EditPreference(string fullName, Preference preference)
+        public void EditPreference(int preference)
         {
-            this.preference = preference;
+            this.preference = (Preference)preference;
         }
         public override string ToString()
         {
-            return $"Fullname: {fullName}\tPhone number: {phoneNumber}\t Preference: {preference}";
+            return $"Ime i prezime: {fullName}\tTel.broj: {phoneNumber}\t Preferenca: {preference}";
         }
     }
 }

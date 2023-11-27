@@ -92,17 +92,18 @@ namespace zad3.Classes
         {
             Console.Clear();
             Console.WriteLine("Brisanje kontakta - Unesite broj kontakta kojeg zelite obrisati");
-            var brojKontaktaZaObrisat = "";
+            var contactToDelete = "";
             Console.Write("Telefonski broj: ");
-            brojKontaktaZaObrisat = Console.ReadLine();
+            contactToDelete = Console.ReadLine();
             if (!Helper.AreYouSure())
             {
                 Console.WriteLine("Brisanje otkazano");
+                Helper.PressAnything();
                 return;
             }
             foreach (var contact in phonebook) 
             {
-                if (contact.Key.phoneNumber == brojKontaktaZaObrisat)
+                if (contact.Key.phoneNumber == contactToDelete)
                 {
                     PhoneBook.DeleteContact(phonebook, contact.Key);
                     Console.WriteLine("Uspjesno izbrisan kontakt");
@@ -118,27 +119,35 @@ namespace zad3.Classes
         {
             Console.Clear();
             Console.WriteLine("Uredivanje preference kontakta - Unesite broj kontakta kojeg zelite urediti\")");
-            Console.WriteLine("[F] - Favorit, [B] - Blokiran, [N] - Normalan kontakt");
+            Console.WriteLine("[0] - Favorit, [1] - Blokiran, [2] - Normalan kontakt");
             Console.WriteLine("Telefonski broj: ");
-            var brojKontaktaZaObrisat = "";
-            brojKontaktaZaObrisat = Console.ReadLine();
-            if (!Helper.AreYouSure()) 
-            {
-                Console.WriteLine("Uredivanje otkazano");
-            }
+            var contactToEdit = "";
+            contactToEdit = Console.ReadLine();
             foreach (var contact in phonebook)
             {
-                if (contact.Key.phoneNumber == brojKontaktaZaObrisat)
+                if (contact.Key.phoneNumber == contactToEdit)
                 {
-                    Console.WriteLine($"Trenutna preferenca kontakta je {contact.Key.preference}");
-                    Console.WriteLine("Unesite novu preferencu: ");
-                    var newPreference = int.Parse(Console.ReadLine());
-                    contact.Key.EditPreference(newPreference);
-                    Console.WriteLine("Uspjesno izbrisan kontakt");
-                    Helper.PressAnything();
+                    var newPreference = 0;
+                    do
+                    {
+                        Console.WriteLine($"Trenutna preferenca kontakta je {contact.Key.preference}");
+                        Console.WriteLine("Unesite novu preferencu: ");
+                        if (Helper.ValidateInput(ref newPreference, 2))
+                        {
+                            Helper.ErrorMessage(0);
+                            continue;
+                        }
+                        contact.Key.EditPreference(newPreference);
+                        Console.WriteLine("Uspjesno izbrisan kontakt");
+                        Helper.PressAnything();
+                        break;
+                    } while (true);
                     return;
                 }
             }
+            Console.Clear();
+            Console.WriteLine("Kontakt nije pronaden");
+            Helper.PressAnything();
         }
         private static void ManageContact()
         {
