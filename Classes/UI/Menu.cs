@@ -149,13 +149,69 @@ namespace zad3.Classes
             Console.WriteLine("Kontakt nije pronaden");
             Helper.PressAnything();
         }
-        private static void ManageContact()
+        private static void ManageContact(Dictionary<Contact, List<Call>> phonebook)
         {
+            var newPhoneNumber = "";
+            var selectedContact = new Contact();
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Upravljanje kontaktom - unesite telefonski broj kontakta s kojim zelite upravljati");
+                Console.Write("Tel.broj: ");
+                newPhoneNumber = Console.ReadLine();
+                selectedContact = Helper.ContactFound(phonebook, newPhoneNumber);
+            } while (selectedContact != null);
 
+            var userChoice = -1;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("[1] Ispis svih poziva");
+                Console.WriteLine("[2] Kreiranje novog poziva");
+                Console.WriteLine("[0] Izlaz");
+
+                if (!Helper.ValidateInput(ref userChoice, 2))
+                {
+                    Helper.ErrorMessage(0);
+                    userChoice = -1;
+                    continue;
+                }
+
+                switch (userChoice)
+                {
+                    case 1:
+                        PrintAllCalls(phonebook[selectedContact]);
+                        break;
+
+                    case 2:
+                        CreateCall(phonebook[selectedContact]);
+                        break;
+
+                    default:
+                        break;
+                }
+            } while (userChoice != 0);
         }
         private static void PrintAllCalls()
         {
 
+        }
+
+        private static void PrintAllCalls(List<Call> calls)
+        {
+            foreach (Call call in calls)
+            {
+                Console.WriteLine(call.ToString());
+            }
+            Helper.PressAnything();
+        }
+
+        private static void CreateCall(List<Call> calls)
+        {
+            foreach (Call call in calls) 
+            {
+                
+            }
         }
         private static bool ExitApplication()
         {
