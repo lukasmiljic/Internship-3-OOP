@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 using zad3.Classes.UI;
 
@@ -86,7 +87,7 @@ namespace zad3.Classes
             {
                 Console.Write("Telefonski broj: ");
                 phoneNumber = Console.ReadLine();
-                if (Helper.ValidatePhoneNumber(phoneNumber, phonebook))
+                if (!Helper.ValidatePhoneNumber(phoneNumber, phonebook))
                 {
                     Console.WriteLine("Greska pri unosu broja");
                     Helper.PressAnything();
@@ -195,7 +196,14 @@ namespace zad3.Classes
                     }
                 }
                 selectedContact = Helper.ContactFound(phonebook, newPhoneNumber);
-            } while (selectedContact == null);
+                if (selectedContact == null)
+                {
+                    Console.WriteLine("Kontakt nije pronaden");
+                    Helper.PressAnything();
+                    continue;
+                }
+                break;
+            } while (true);
 
             var userChoice = -1;
             do
@@ -256,10 +264,14 @@ namespace zad3.Classes
         private static void PrintAllCalls(List<Call> calls)
         {
             Console.Clear();
+            Console.WriteLine("Ispis svih poziva");
+            var isEmpty = true;
             foreach (Call call in calls)
             {
                 Console.WriteLine(call.ToString());
+                isEmpty = false;
             }
+            if (isEmpty) Console.WriteLine("Nije zabiljezen nijedan poziv");
             Helper.PressAnything();
         }
 
