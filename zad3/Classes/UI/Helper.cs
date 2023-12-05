@@ -31,20 +31,6 @@ namespace zad3.Classes.UI
             Console.WriteLine("Unesite bilo sto za nastavak...");
             Console.ReadLine();
         }
-        public static int ExitApplication()
-        {
-            Console.Clear();
-            if (AreYouSure())
-            {
-                Console.WriteLine("Zbogom...");
-                Thread.Sleep(1000);
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
         public static bool AreYouSure()
         {
             do
