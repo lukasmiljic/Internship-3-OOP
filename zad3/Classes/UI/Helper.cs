@@ -51,8 +51,8 @@ namespace zad3.Classes.UI
                 }
             } while (true);
         }
-
-        public static Contact? ContactFound(Dictionary<Contact, List<Call>> phonebook, string phoneNumber)
+        //stavi u Contact?
+        public static Contact ContactFound(Dictionary<Contact, List<Call>> phonebook, string phoneNumber)
         {
             foreach (var contact in phonebook)
             {
@@ -66,21 +66,19 @@ namespace zad3.Classes.UI
 
         public static bool ValidatePhoneNumber (string phoneNumber, Dictionary<Contact, List<Call>> phonebook)
         {
-            var temp = 0;
-            if (phoneNumber.Length < 6 || !int.TryParse(phoneNumber, out temp)) return false;
+            if (phoneNumber.Length < 6 || !int.TryParse(phoneNumber, out var temp)) return false;
             if (ContactFound(phonebook, phoneNumber) != null) return false;
+            //promjeni contact found u nullable pa vidi jel moze !contactfound
             return true;
         }
 
         public static bool IsEmpty(Dictionary<Contact, List<Call>> phonebook)
         {
-            if (phonebook.Count == 0)
-            {
-                Console.WriteLine("Trenutno nema nijedan kontakt u kontaktima");
-                Helper.PressAnything();
-                return true;
-            }
-            return false;
+            if (phonebook.Count != 0)
+                    return false;
+            Console.WriteLine("Trenutno nema nijedan kontakt u kontaktima");
+            PressAnything();
+            return true;
         }
 
         public static void SimplePrint(Dictionary<Contact, List<Call>> phonebook)
