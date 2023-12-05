@@ -7,10 +7,11 @@ namespace zad3.Classes
     {
         public DateTime callDate;
         public Status status;
+        public int Length { get; set; } = 0;
 
         public override string ToString()
         {
-            return $"{callDate.ToString("d/M/yyyy")}  - {status}\n";
+            return $"{callDate.ToString("d/M/yyyy")} {Length} - {status}\n";
         }
     }
 }

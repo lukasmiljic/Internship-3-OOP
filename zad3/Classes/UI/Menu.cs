@@ -282,10 +282,17 @@ namespace zad3.Classes
         {
             Console.Clear();
             calls.Add(new Call() { callDate = DateTime.Now, status = Enums.Status.inProgress});
-            //odgovor na poziv mora biti random generirana vrijednost?
             Random rand = new Random();
+            calls[calls.Count - 1].Length = rand.Next(20);
+            if (rand.Next(99) <= 15)
+            {
+                Console.WriteLine("Kontakt se ne javlja");
+                Helper.PressAnything();
+                calls[calls.Count - 1].status = Enums.Status.missed;
+                return;
+            }
             Console.WriteLine("Poziv je u tijeku...");
-            Thread.Sleep(rand.Next(1, 20) * 100);
+            Thread.Sleep(calls[calls.Count - 1].Length*100);
             calls[calls.Count - 1].status = Enums.Status.ended;
             Helper.PressAnything();
         }
