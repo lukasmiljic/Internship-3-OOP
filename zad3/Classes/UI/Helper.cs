@@ -56,7 +56,7 @@ namespace zad3.Classes.UI
         {
             foreach (var contact in phonebook)
             {
-                if (contact.Key.phoneNumber == phoneNumber)
+                if (contact.Key.PhoneNumber == phoneNumber)
                 {
                     return contact.Key;
                 }
@@ -85,7 +85,7 @@ namespace zad3.Classes.UI
         {
             foreach (var contact in phonebook)
             {
-                Console.WriteLine("\t" + contact.Key.Name + " " + contact.Key.phoneNumber);
+                Console.WriteLine("\t" + contact.Key.Name + " " + contact.Key.PhoneNumber);
             }
         }
     }

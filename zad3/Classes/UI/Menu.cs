@@ -103,7 +103,7 @@ namespace zad3.Classes
                 {
                     Name = InputName,
                     LastName = InputLastName,
-                    phoneNumber = phoneNumber,
+                    PhoneNumber = phoneNumber,
                 };
                 PhoneBook.AddNewContact(phonebook, newContact, new List<Call>());
                 Console.WriteLine("Uspjesno dodan novi kontakt");
@@ -123,7 +123,7 @@ namespace zad3.Classes
             contactToDelete = Console.ReadLine();
             foreach (var contact in phonebook) 
             {
-                if (contact.Key.phoneNumber == contactToDelete)
+                if (contact.Key.PhoneNumber == contactToDelete)
                 {
                     if (!Helper.AreYouSure())
                     {
@@ -153,12 +153,12 @@ namespace zad3.Classes
             contactToEdit = Console.ReadLine();
             foreach (var contact in phonebook)
             {
-                if (contact.Key.phoneNumber == contactToEdit)
+                if (contact.Key.PhoneNumber == contactToEdit)
                 {
                     var newPreference = 0;
                     do
                     {
-                        Console.WriteLine($"Trenutna preferenca kontakta je {contact.Key.preference}");
+                        Console.WriteLine($"Trenutna preferenca kontakta je {contact.Key.Preference}");
                         Console.Write("Unesite novu preferencu: ");
                         if (!Helper.ValidateInput(ref newPreference, 2))
                         {
@@ -275,19 +275,19 @@ namespace zad3.Classes
         private static void CreateCall(List<Call> calls)
         {
             Console.Clear();
-            calls.Add(new Call() { callDate = DateTime.Now, status = Enums.Status.InProgress});
+            calls.Add(new Call() { CallDate = DateTime.Now, Status = Enums.Status.InProgress});
             Random rand = new Random();
             calls[calls.Count - 1].Length = rand.Next(20);
             if (rand.Next(99) <= 15)
             {
                 Console.WriteLine("Kontakt se ne javlja");
                 Helper.PressAnything();
-                calls[calls.Count - 1].status = Enums.Status.Missed;
+                calls[calls.Count - 1].Status = Enums.Status.Missed;
                 return;
             }
             Console.WriteLine("Poziv je u tijeku...");
             Thread.Sleep(calls[calls.Count - 1].Length*100);
-            calls[calls.Count - 1].status = Enums.Status.Ended;
+            calls[calls.Count - 1].Status = Enums.Status.Ended;
             Helper.PressAnything();
         }
         private static bool ExitApplication()
