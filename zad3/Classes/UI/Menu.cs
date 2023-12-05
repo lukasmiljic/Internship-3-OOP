@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading;
 using zad3.Classes.UI;
 
@@ -58,9 +57,6 @@ namespace zad3.Classes
                     case 0:
                         if (!ExitApplication()) userChoice = -1;
                         break;
-
-                    default:
-                        break;
                 }
             } while (userChoice != 0);
         }
@@ -70,7 +66,7 @@ namespace zad3.Classes
             Console.Clear();
             Console.WriteLine("Ispis svih kontakata");
 
-            if (Helper.IsEmpty(phonebook) == true) return;
+            if (Helper.IsEmpty(phonebook)) return;
 
             PhoneBook.PrintContacts(phonebook);
             Helper.PressAnything();
@@ -114,7 +110,7 @@ namespace zad3.Classes
         {
             Console.Clear();
             Console.WriteLine("Brisanje kontakta - Unesite broj kontakta kojeg zelite obrisati");
-            if (Helper.IsEmpty(phonebook) == true) return;
+            if (Helper.IsEmpty(phonebook)) return;
             Helper.SimplePrint(phonebook);
 
             var contactToDelete = "";
@@ -146,7 +142,7 @@ namespace zad3.Classes
             Console.WriteLine("Uredivanje preference kontakta - Unesite broj kontakta kojeg zelite urediti\")");
             Console.WriteLine("[0] - Favorit, [1] - Blokiran, [2] - Normalan kontakt");
             Console.WriteLine("Telefonski broj: ");
-            if (Helper.IsEmpty(phonebook) == true) return;
+            if (Helper.IsEmpty(phonebook)) return;
             Helper.SimplePrint(phonebook);
             var contactToEdit = "";
             contactToEdit = Console.ReadLine();
@@ -185,7 +181,7 @@ namespace zad3.Classes
             {
                 Console.Clear();
                 Console.WriteLine("Upravljanje kontaktom - unesite telefonski broj kontakta s kojim zelite upravljati [0] za Izlaz");
-                if (Helper.IsEmpty(phonebook) == true) return;
+                if (Helper.IsEmpty(phonebook)) return;  
                 Helper.SimplePrint(phonebook);
                 Console.Write("Tel.broj: ");
                 newPhoneNumber = Console.ReadLine();
@@ -233,8 +229,6 @@ namespace zad3.Classes
                         CreateCall(phonebook[selectedContact]);
                         break;
 
-                    default:
-                        break;
                 }
             } while (userChoice != 0);
         }
@@ -243,7 +237,7 @@ namespace zad3.Classes
             var emptyFlag = true;
             Console.Clear();
             Console.WriteLine("Ispis svih poziva");
-            if (Helper.IsEmpty(phonebook) == true) return;
+            if (Helper.IsEmpty(phonebook)) return;
 
             foreach (var item in phonebook)
             {
@@ -254,13 +248,8 @@ namespace zad3.Classes
                     Console.WriteLine("\t" + item.Value[i].ToString());
                     emptyFlag = false;
                 }
-                //foreach(var call in phonebook.Values)
-                //{
-                //    Console.WriteLine(call.ToString());
-                //    emptyFlag = false;
-                //}
             }
-            if (emptyFlag == true) Console.WriteLine("Trenutno nema ni jedan poziv");
+            if (emptyFlag) Console.WriteLine("Trenutno nema ni jedan poziv");
             Helper.PressAnything();
         }
 

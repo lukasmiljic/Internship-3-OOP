@@ -22,9 +22,6 @@ namespace zad3.Classes.UI
                 case 0:
                     Console.WriteLine("Greska pri odabiru! Molimo ponovno unesite vrijednost");
                     break;
-
-                default:
-                    break;
             }
 
             PressAnything();
