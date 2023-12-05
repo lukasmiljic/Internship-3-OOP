@@ -105,7 +105,7 @@ namespace zad3.Classes.UI
         {
             foreach (var contact in phonebook)
             {
-                Console.WriteLine("\t" + contact.Key.fullName + " " + contact.Key.phoneNumber);
+                Console.WriteLine("\t" + contact.Key.Name + " " + contact.Key.phoneNumber);
             }
         }
     }

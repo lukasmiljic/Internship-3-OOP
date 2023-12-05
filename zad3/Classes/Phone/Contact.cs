@@ -4,7 +4,8 @@ namespace zad3.Classes
 {
     public class Contact
     {
-        public string fullName {  get; set; }
+        public string Name {  get; set; }
+        public string LastName {  get; set; }
         public string phoneNumber { get; set; }
         public Preference preference { get; set; } = Preference.Normal;
 
@@ -14,7 +15,7 @@ namespace zad3.Classes
         }
         public override string ToString()
         {
-            return $"Ime i prezime: {fullName}\tTel.broj: {phoneNumber}\t Preferenca: {preference}";
+            return $"Ime i prezime: {Name} {LastName}\tTel.broj: {phoneNumber}\t Preferenca: {preference}";
         }
     }
 }

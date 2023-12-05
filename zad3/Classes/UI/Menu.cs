@@ -80,8 +80,10 @@ namespace zad3.Classes
             Console.Clear();
             Console.WriteLine("Dodavanje novog kontakta");
             
-            Console.Write("Ime i prezime: ");
-            var fullName = Console.ReadLine();
+            Console.Write("Ime : ");
+            var Name = Console.ReadLine();
+            Console.Write("Ime : ");
+            var LastName = Console.ReadLine();
             var phoneNumber = "";
             do
             {
@@ -99,7 +101,8 @@ namespace zad3.Classes
             if (Helper.AreYouSure())
             {
                 var newContact = new Contact();
-                newContact.fullName = fullName;
+                newContact.Name = Name;
+                newContact.LastName = LastName;
                 newContact.phoneNumber = phoneNumber;
                 PhoneBook.AddNewContact(phonebook, newContact, new List<Call>());
                 Console.WriteLine("Uspjesno dodan novi kontakt");
@@ -245,7 +248,7 @@ namespace zad3.Classes
             foreach (var item in phonebook)
             {
                 if (item.Value.Count == 0) continue;
-                Console.WriteLine(item.Key.fullName);
+                Console.WriteLine(item.Key.Name + " " + item.Key.LastName);
                 for (int i= 0; i<item.Value.Count; i++)
                 {
                     Console.WriteLine("\t" + item.Value[i].ToString());

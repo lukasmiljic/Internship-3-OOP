@@ -13,7 +13,7 @@ namespace zad3
         {
             var phoneBook = new Dictionary<Contact, List<Call>>
             {
-                {new Contact{fullName = "Ante Antic", phoneNumber = "063456789"}, new List<Call>()}
+                {new Contact{Name = "Ante", LastName = "Antic", phoneNumber = "063456789"}, new List<Call>()}
             };
             Menu.MainMenu(phoneBook);
         }
