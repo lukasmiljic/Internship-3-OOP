@@ -77,9 +77,9 @@ namespace zad3.Classes
             Console.WriteLine("Dodavanje novog kontakta");
             
             Console.Write("Ime : ");
-            var Name = Console.ReadLine();
+            var InputName = Console.ReadLine();
             Console.Write("Ime : ");
-            var LastName = Console.ReadLine();
+            var InputLastName = Console.ReadLine();
             var phoneNumber = "";
             do
             {
@@ -96,10 +96,15 @@ namespace zad3.Classes
             
             if (Helper.AreYouSure())
             {
-                var newContact = new Contact();
-                newContact.Name = Name;
-                newContact.LastName = LastName;
-                newContact.phoneNumber = phoneNumber;
+                //mislim sam da sam cuo na nekom predavanju da je kao bolje
+                //ne radit konstruktore gdje dodjeljujemo sve vrjednosti objektu?
+                //pa sam zato ostavio ovako
+                var newContact = new Contact()
+                {
+                    Name = InputName,
+                    LastName = InputLastName,
+                    phoneNumber = phoneNumber,
+                };
                 PhoneBook.AddNewContact(phonebook, newContact, new List<Call>());
                 Console.WriteLine("Uspjesno dodan novi kontakt");
             }

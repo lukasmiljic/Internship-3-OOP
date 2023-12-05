@@ -8,7 +8,6 @@ namespace zad3.Classes
         public string LastName {  get; set; }
         public string phoneNumber { get; set; }
         public Preference preference { get; set; } = Preference.Normal;
-
         public void EditPreference(int preference)
         {
             var pref = (Preference)preference;
