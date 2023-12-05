@@ -11,7 +11,10 @@ namespace zad3.Classes
 
         public void EditPreference(int preference)
         {
-            this.preference = (Preference)preference;
+            var pref = (Preference)preference;
+            this.preference = pref;
+            //this.preference = (Preference)preference;
+            //ovo gore je ozbiljno drukcije od ovog? haha
         }
         public override string ToString()
         {

@@ -165,7 +165,7 @@ namespace zad3.Classes
                             continue;
                         }
                         contact.Key.EditPreference(newPreference);
-                        Console.WriteLine("Uspjesno izbrisan kontakt");
+                        Console.WriteLine("Uspjesno promjenjena preferenca kontakta");
                         Helper.PressAnything();
                         break;
                     } while (true);
