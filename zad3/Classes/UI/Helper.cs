@@ -35,9 +35,8 @@ namespace zad3.Classes.UI
         {
             do
             {
-                char userChoice;
                 Console.Write("Jeste li sigurni [y/n]: ");
-                char.TryParse(Console.ReadLine(), out userChoice);
+                var userChoice = char.Parse(Console.ReadLine());
                 if (userChoice == 'y')
                 {
                     return true;
@@ -53,7 +52,7 @@ namespace zad3.Classes.UI
             } while (true);
         }
 
-        public static Contact ContactFound(Dictionary<Contact, List<Call>> phonebook, string phoneNumber)
+        public static Contact? ContactFound(Dictionary<Contact, List<Call>> phonebook, string phoneNumber)
         {
             foreach (var contact in phonebook)
             {
