@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace zad3.Classes
 {
-    internal class PhoneBook
+    abstract public class PhoneBook
     {
         public static void PrintContacts(Dictionary<Contact, List<Call>> phoneBook)
         {

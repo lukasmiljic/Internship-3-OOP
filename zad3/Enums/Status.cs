@@ -2,8 +2,8 @@
 {
     public enum Status
     {
-        inProgress,
-        missed,
-        ended
+        InProgress,
+        Missed,
+        Ended
     }
 }

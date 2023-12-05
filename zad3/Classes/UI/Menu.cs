@@ -275,19 +275,19 @@ namespace zad3.Classes
         private static void CreateCall(List<Call> calls)
         {
             Console.Clear();
-            calls.Add(new Call() { callDate = DateTime.Now, status = Enums.Status.inProgress});
+            calls.Add(new Call() { callDate = DateTime.Now, status = Enums.Status.InProgress});
             Random rand = new Random();
             calls[calls.Count - 1].Length = rand.Next(20);
             if (rand.Next(99) <= 15)
             {
                 Console.WriteLine("Kontakt se ne javlja");
                 Helper.PressAnything();
-                calls[calls.Count - 1].status = Enums.Status.missed;
+                calls[calls.Count - 1].status = Enums.Status.Missed;
                 return;
             }
             Console.WriteLine("Poziv je u tijeku...");
             Thread.Sleep(calls[calls.Count - 1].Length*100);
-            calls[calls.Count - 1].status = Enums.Status.ended;
+            calls[calls.Count - 1].status = Enums.Status.Ended;
             Helper.PressAnything();
         }
         private static bool ExitApplication()
